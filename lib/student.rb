@@ -88,8 +88,7 @@ class Student
       sql = <<-SQL
          SELECT *
          FROM students
-         GROUP BY name
-         HAVING grade < 12
+        WHERE grade = 10
        SQL
 
        DB[:conn].execute(sql).collect do |row|
