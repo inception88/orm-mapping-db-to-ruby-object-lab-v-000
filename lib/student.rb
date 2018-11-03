@@ -14,7 +14,7 @@ class Student
        SELECT *
        FROM students
      SQL
-  
+
      DB[:conn].execute(sql).collect do |row|
        self.new_from_db(row)
      end
@@ -58,4 +58,16 @@ class Student
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql)
   end
+
+  def all_students_in_grade_9
+    sql = <<-SQL
+       SELECT *
+       FROM students
+       WHERE grade = 9
+     SQL
+
+     DB[:conn].execute(sql).collect do |row|
+       self.new_from_db(row)
+     end
+   end
 end
